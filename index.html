@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MassDwell Sales Kit</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+  <style>
+    :root {
+      --navy: #112C48;
+      --navy-light: #1a3d5c;
+      --gold: #C9A227;
+      --white: #ffffff;
+      --gray-100: #f8f9fa;
+      --gray-200: #e9ecef;
+      --gray-600: #6c757d;
+      --success: #28a745;
+      --danger: #dc3545;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--gray-100);
+      color: var(--navy);
+      line-height: 1.5;
+    }
+    
+    /* Login Screen */
+    #login-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    
+    .login-box {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 320px;
+      text-align: center;
+    }
+    
+    .login-box h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .login-box p {
+      color: var(--gray-600);
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .login-box input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--gray-200);
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .login-box input:focus {
+      outline: none;
+      border-color: var(--navy);
+    }
+    
+    .login-box button {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    .login-error {
+      color: var(--danger);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    
+    /* Header */
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    header h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    
+    header p {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+    
+    /* Search */
+    .search-container {
+      padding: 1rem;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky;
+      top: 60px;
+      z-index: 99;
+    }
+    
+    #search {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--gray-200);
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    
+    #search:focus {
+      outline: none;
+      border-color: var(--navy);
+    }
+    
+    /* Sections */
+    main {
+      padding: 1rem;
+      padding-bottom: 6rem;
+    }
+    
+    .section {
+      background: var(--white);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .section-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+    
+    .section-header .icon {
+      font-size: 1.2rem;
+    }
+    
+    .section-header .toggle {
+      margin-left: auto;
+      transition: transform 0.2s;
+    }
+    
+    .section.collapsed .section-header .toggle {
+      transform: rotate(-90deg);
+    }
+    
+    .section.collapsed .section-content {
+      display: none;
+    }
+    
+    .section-content {
+      padding: 0.5rem;
+    }
+    
+    /* Cards */
+    .card {
+      padding: 1rem;
+      border-bottom: 1px solid var(--gray-200);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .card:last-child {
+      border-bottom: none;
+    }
+    
+    .card:active {
+      background: var(--gray-100);
+    }
+    
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+    }
+    
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 200;
+    }
+    
+    .modal-overlay.active {
+      display: flex;
+    }
+    
+    .modal {
+      background: var(--white);
+      width: 100%;
+      max-width: 600px;
+      max-height: 85vh;
+      border-radius: 16px 16px 0 0;
+      overflow: hidden;
+      animation: slideUp 0.3s ease;
+    }
+    
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    
+    .modal-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .modal-header h2 {
+      font-size: 1.1rem;
+    }
+    
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+    
+    .modal-body {
+      padding: 1rem;
+      overflow-y: auto;
+      max-height: calc(85vh - 60px);
+    }
+    
+    .modal-body h3 {
+      color: var(--navy);
+      margin: 1rem 0 0.5rem;
+      font-size: 1rem;
+    }
+    
+    .modal-body h3:first-child {
+      margin-top: 0;
+    }
+    
+    .modal-body p, .modal-body li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    .modal-body ul {
+      padding-left: 1.25rem;
+    }
+    
+    .modal-body .highlight {
+      background: #fff3cd;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+      border-left: 4px solid var(--gold);
+    }
+    
+    .modal-body .objection {
+      background: #f8d7da;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+    }
+    
+    .modal-body .response {
+      background: #d4edda;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+    }
+    
+    .copy-btn {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      border: none;
+    }
+    
+    .copy-btn:active {
+      background: var(--navy-light);
+    }
+    
+    /* Send Links */
+    .send-link {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid var(--gray-200);
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .send-link:last-child {
+      border-bottom: none;
+    }
+    
+    .send-link .icon {
+      font-size: 2rem;
+      margin-right: 1rem;
+    }
+    
+    .send-link .info {
+      flex: 1;
+    }
+    
+    .send-link .title {
+      font-weight: 600;
+    }
+    
+    .send-link .desc {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+    }
+    
+    .send-link .action {
+      color: var(--navy);
+      font-weight: 600;
+    }
+    
+    /* Bottom Nav */
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+      z-index: 100;
+    }
+    
+    nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--gray-600);
+      font-size: 0.7rem;
+      padding: 0.5rem;
+    }
+    
+    nav a.active {
+      color: var(--navy);
+    }
+    
+    nav a .icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    /* Utility */
+    .hidden {
+      display: none !important;
+    }
+    
+    /* Desktop adjustments */
+    @media (min-width: 768px) {
+      main {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .modal {
+        border-radius: 16px;
+        margin-bottom: 2rem;
+      }
+      
+      .modal-overlay {
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="login-screen">
+    <div class="login-box">
+      <h1>🏠 MassDwell</h1>
+      <p>Sales Kit — Internal Use Only</p>
+      <input type="password" id="password" placeholder="Enter password" autocomplete="off">
+      <button onclick="tryLogin()">Access Sales Kit</button>
+      <p class="login-error" id="login-error">Incorrect password</p>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" class="hidden">
+    <header>
+      <h1>🏠 MassDwell Sales Kit</h1>
+      <p>Quick reference for calls</p>
+    </header>
+    
+    <div class="search-container">
+      <input type="text" id="search" placeholder="🔍 Search pricing, objections, competitors...">
+    </div>
+    
+    <main id="main-content">
+      <!-- Quick Answers -->
+      <div class="section" data-section="quick">
+        <div class="section-header" onclick="toggleSection(this)">
+          <span class="icon">⚡</span>
+          Quick Answers
+          <span class="toggle">▼</span>
+        </div>
+        <div class="section-content">
+          <div class="card" onclick="openModal('pricing')">
+            <div class="card-title">💰 Pricing & Models</div>
+            <div class="card-subtitle">$141K - $270K | 4 models</div>
+          </div>
+          <div class="card" onclick="openModal('timeline')">
+            <div class="card-title">📅 Timeline & Process</div>
+            <div class="card-subtitle">8-12 weeks post-approval</div>
+          </div>
+          <div class="card" onclick="openModal('financing')">
+            <div class="card-title">🏦 Financing Options</div>
+            <div class="card-subtitle">HELOC, cash-out refi, construction loans</div>
+          </div>
+          <div class="card" onclick="openModal('permits')">
+            <div class="card-title">📋 Permits & Regulations</div>
+            <div class="card-subtitle">MA ADU law, by-right provisions</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Objection Handling -->
+      <div class="section" data-section="objections">
+        <div class="section-header" onclick="toggleSection(this)">
+          <span class="icon">🛡️</span>
+          Objection Handling
+          <span class="toggle">▼</span>
+        </div>
+        <div class="section-content">
+          <div class="card" onclick="openModal('obj-price')">
+            <div class="card-title">💸 "Too expensive"</div>
+            <div class="card-subtitle">ROI and value comparison responses</div>
+          </div>
+          <div class="card" onclick="openModal('obj-time')">
+            <div class="card-title">⏰ "Need to think about it"</div>
+            <div class="card-subtitle">Urgency and next steps</div>
+          </div>
+          <div class="card" onclick="openModal('obj-quality')">
+            <div class="card-title">🏗️ "Is modular quality good?"</div>
+            <div class="card-subtitle">Factory vs stick-built comparison</div>
+          </div>
+          <div class="card" onclick="openModal('obj-permits')">
+            <div class="card-title">📝 "What about permits?"</div>
+            <div class="card-subtitle">We handle everything</div>
+          </div>
+          <div class="card" onclick="openModal('obj-neighbors')">
+            <div class="card-title">👥 "What will neighbors think?"</div>
+            <div class="card-subtitle">Design integration, property values</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Competitor Intel -->
+      <div class="section" data-section="competitors">
+        <div class="section-header" onclick="toggleSection(this)">
+          <span class="icon">🆚</span>
+          Competitor Intel
+          <span class="toggle">▼</span>
+        </div>
+        <div class="section-content">
+          <div class="card" onclick="openModal('vs-stickbuilt')">
+            <div class="card-title">🔨 vs. Stick-Built</div>
+            <div class="card-subtitle">Traditional construction comparison</div>
+          </div>
+          <div class="card" onclick="openModal('vs-modular')">
+            <div class="card-title">🏭 vs. Other Modular</div>
+            <div class="card-subtitle">Boxabl, Villa, prefab competitors</div>
+          </div>
+          <div class="card" onclick="openModal('vs-local')">
+            <div class="card-title">📍 vs. MA Competitors</div>
+            <div class="card-subtitle">Suffolk, Backyard ADU, local builders</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Send to Lead -->
+      <div class="section" data-section="send">
+        <div class="section-header" onclick="toggleSection(this)">
+          <span class="icon">📤</span>
+          Send to Lead
+          <span class="toggle">▼</span>
+        </div>
+        <div class="section-content">
+          <a class="send-link" href="https://massdwell.com/lookbook" target="_blank">
+            <span class="icon">📖</span>
+            <div class="info">
+              <div class="title">Lookbook</div>
+              <div class="desc">Visual showcase of ADU models</div>
+            </div>
+            <span class="action">Open →</span>
+          </a>
+          <a class="send-link" href="https://massdwell.com/roi-calculator" target="_blank">
+            <span class="icon">🧮</span>
+            <div class="info">
+              <div class="title">ROI Calculator</div>
+              <div class="desc">Investment analysis tool</div>
+            </div>
+            <span class="action">Open →</span>
+          </a>
+          <a class="send-link" href="https://massdwell.com/catalogue" target="_blank">
+            <span class="icon">📋</span>
+            <div class="info">
+              <div class="title">Product Catalogue</div>
+              <div class="desc">Full specs and floor plans</div>
+            </div>
+            <span class="action">Open →</span>
+          </a>
+          <a class="send-link" href="https://massdwell.com/book" target="_blank">
+            <span class="icon">📅</span>
+            <div class="info">
+              <div class="title">Book Discovery Call</div>
+              <div class="desc">Calendar booking link</div>
+            </div>
+            <span class="action">Open →</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Call Scripts -->
+      <div class="section" data-section="scripts">
+        <div class="section-header" onclick="toggleSection(this)">
+          <span class="icon">📞</span>
+          Call Scripts
+          <span class="toggle">▼</span>
+        </div>
+        <div class="section-content">
+          <div class="card" onclick="openModal('script-discovery')">
+            <div class="card-title">🔍 Discovery Call</div>
+            <div class="card-subtitle">Qualification questions & flow</div>
+          </div>
+          <div class="card" onclick="openModal('script-followup')">
+            <div class="card-title">📲 Follow-up Call</div>
+            <div class="card-subtitle">Re-engagement script</div>
+          </div>
+          <div class="card" onclick="openModal('script-close')">
+            <div class="card-title">🎯 Closing Call</div>
+            <div class="card-subtitle">Moving to contract</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <nav>
+      <a href="#" class="active" onclick="scrollToSection('quick')">
+        <span class="icon">⚡</span>
+        Quick
+      </a>
+      <a href="#" onclick="scrollToSection('objections')">
+        <span class="icon">🛡️</span>
+        Objections
+      </a>
+      <a href="#" onclick="scrollToSection('competitors')">
+        <span class="icon">🆚</span>
+        Compete
+      </a>
+      <a href="#" onclick="scrollToSection('send')">
+        <span class="icon">📤</span>
+        Send
+      </a>
+    </nav>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2 id="modal-title">Title</h2>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        Content
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Password (simple obfuscation - not secure, just keeps casual access out)
+    const PASS = 'massdwell2026';
+    
+    function tryLogin() {
+      const input = document.getElementById('password').value;
+      if (input === PASS) {
+        document.getElementById('login-screen').classList.add('hidden');
+        document.getElementById('app').classList.remove('hidden');
+        localStorage.setItem('sales-auth', 'true');
+      } else {
+        document.getElementById('login-error').style.display = 'block';
+      }
+    }
+    
+    // Check if already logged in
+    if (localStorage.getItem('sales-auth') === 'true') {
+      document.getElementById('login-screen').classList.add('hidden');
+      document.getElementById('app').classList.remove('hidden');
+    }
+    
+    // Enter key for login
+    document.getElementById('password').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') tryLogin();
+    });
+    
+    // Section toggle
+    function toggleSection(header) {
+      header.parentElement.classList.toggle('collapsed');
+    }
+    
+    // Scroll to section
+    function scrollToSection(name) {
+      const section = document.querySelector(`[data-section="${name}"]`);
+      if (section) {
+        section.classList.remove('collapsed');
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      // Update nav
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      event.target.closest('a').classList.add('active');
+    }
+    
+    // Search
+    document.getElementById('search').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+      // Expand all sections when searching
+      if (query) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('collapsed'));
+      }
+    });
+    
+    // Modal content
+    const modalContent = {
+      'pricing': {
+        title: '💰 Pricing & Models',
+        body: `
+          <h3>Model Lineup</h3>
+          <table style="width:100%; border-collapse: collapse; margin: 0.5rem 0;">
+            <tr style="background: var(--navy); color: white;">
+              <th style="padding: 0.5rem; text-align: left;">Model</th>
+              <th style="padding: 0.5rem;">Size</th>
+              <th style="padding: 0.5rem;">Bed/Bath</th>
+              <th style="padding: 0.5rem;">Price</th>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 0.5rem;"><strong>Dwell Essential</strong></td>
+              <td style="padding: 0.5rem; text-align: center;">470 sqft</td>
+              <td style="padding: 0.5rem; text-align: center;">1/1</td>
+              <td style="padding: 0.5rem; text-align: center;"><strong>$141,000</strong></td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 0.5rem;"><strong>Dwell Classic</strong></td>
+              <td style="padding: 0.5rem; text-align: center;">565 sqft</td>
+              <td style="padding: 0.5rem; text-align: center;">2/1</td>
+              <td style="padding: 0.5rem; text-align: center;"><strong>$172,000</strong></td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 0.5rem;"><strong>Dwell Deluxe</strong></td>
+              <td style="padding: 0.5rem; text-align: center;">594 sqft</td>
+              <td style="padding: 0.5rem; text-align: center;">2/1</td>
+              <td style="padding: 0.5rem; text-align: center;"><strong>$186,000</strong></td>
+            </tr>
+            <tr>
+              <td style="padding: 0.5rem;"><strong>Dwell Prime</strong></td>
+              <td style="padding: 0.5rem; text-align: center;">892 sqft</td>
+              <td style="padding: 0.5rem; text-align: center;">2/2</td>
+              <td style="padding: 0.5rem; text-align: center;"><strong>$270,000</strong></td>
+            </tr>
+          </table>
+          
+          <h3>What's Included</h3>
+          <ul>
+            <li>✅ Full design & engineering</li>
+            <li>✅ Permitting assistance</li>
+            <li>✅ Factory-built module</li>
+            <li>✅ Delivery & crane set</li>
+            <li>✅ Premium interior finishes</li>
+            <li>✅ Appliances (kitchen & laundry)</li>
+          </ul>
+          
+          <h3>Not Included (Site Work)</h3>
+          <ul>
+            <li>Foundation ($15-25K typical)</li>
+            <li>Utility connections ($5-15K)</li>
+            <li>Site prep & landscaping (varies)</li>
+          </ul>
+          
+          <div class="highlight">
+            <strong>💡 Key Point:</strong> All-in cost typically $180K-$350K depending on site conditions. Still 30-40% less than stick-built.
+          </div>
+        `
+      },
+      'timeline': {
+        title: '📅 Timeline & Process',
+        body: `
+          <h3>Typical Timeline: 4-6 Months Total</h3>
+          
+          <div style="margin: 1rem 0;">
+            <strong>1. Discovery & Design (2-4 weeks)</strong>
+            <p>Site assessment, model selection, customization</p>
+          </div>
+          
+          <div style="margin: 1rem 0;">
+            <strong>2. Permitting (4-8 weeks)</strong>
+            <p>We handle everything — plans, applications, approvals</p>
+          </div>
+          
+          <div style="margin: 1rem 0;">
+            <strong>3. Factory Build (6-8 weeks)</strong>
+            <p>Parallel with permitting. Climate-controlled, quality assured.</p>
+          </div>
+          
+          <div style="margin: 1rem 0;">
+            <strong>4. Site Prep (2-3 weeks)</strong>
+            <p>Foundation, utilities while unit is being built</p>
+          </div>
+          
+          <div style="margin: 1rem 0;">
+            <strong>5. Delivery & Set (1 day)</strong>
+            <p>Crane-set onto foundation</p>
+          </div>
+          
+          <div style="margin: 1rem 0;">
+            <strong>6. Final Connections (1-2 weeks)</strong>
+            <p>Utility hookups, final inspections, punch list</p>
+          </div>
+          
+          <div class="highlight">
+            <strong>💡 Comparison:</strong> Traditional stick-built ADU = 9-18 months. We're 50-60% faster.
+          </div>
+        `
+      },
+      'financing': {
+        title: '🏦 Financing Options',
+        body: `
+          <h3>Most Common Options</h3>
+          
+          <div style="margin: 1rem 0;">
+            <strong>1. HELOC (Home Equity Line of Credit)</strong>
+            <ul>
+              <li>Use existing home equity</li>
+              <li>Flexible draw schedule</li>
+              <li>Interest-only during construction</li>
+              <li>Rates: Prime + 0-2%</li>
+            </ul>
+          </div>
+          
+          <div style="margin: 1rem 0;">
+            <strong>2. Cash-Out Refinance</strong>
+            <ul>
+              <li>Replace existing mortgage</li>
+              <li>Pull equity out as cash</li>
+              <li>Fixed rate, single payment</li>
+              <li>Best if rates are favorable</li>
+            </ul>
+          </div>
+          
+          <div style="margin: 1rem 0;">
+            <strong>3. Construction Loan</strong>
+            <ul>
+              <li>Short-term financing</li>
+              <li>Converts to permanent mortgage</li>
+              <li>Good for larger projects</li>
+            </ul>
+          </div>
+          
+          <div style="margin: 1rem 0;">
+            <strong>4. ADU-Specific Lenders</strong>
+            <ul>
+              <li>Point, Maxable, Genesis</li>
+              <li>Specialize in ADU financing</li>
+              <li>May consider projected rental income</li>
+            </ul>
+          </div>
+          
+          <div class="highlight">
+            <strong>💡 ROI Angle:</strong> At $2,000/mo rent, a $200K ADU pays for itself in 8-10 years while adding $100K+ to property value immediately.
+          </div>
+        `
+      },
+      'permits': {
+        title: '📋 Permits & Regulations',
+        body: `
+          <h3>🚨 NEW: MA ADU Law (Feb 2, 2026)</h3>
+          
+          <div class="highlight">
+            <strong>Every MA city/town MUST now allow ADUs.</strong> This is state law — local zoning cannot block it.
+          </div>
+          
+          <h3>Key Provisions</h3>
+          <ul>
+            <li>✅ ADUs allowed <strong>by-right</strong> (no special permit)</li>
+            <li>✅ Up to 900 sqft allowed</li>
+            <li>✅ No owner-occupancy requirement</li>
+            <li>✅ Reduced parking requirements</li>
+            <li>✅ Applies to 177 MBTA communities</li>
+          </ul>
+          
+          <h3>What We Handle</h3>
+          <ul>
+            <li>✅ Site feasibility assessment</li>
+            <li>✅ Architectural plans</li>
+            <li>✅ Engineering & structural</li>
+            <li>✅ Building permit application</li>
+            <li>✅ All inspections</li>
+          </ul>
+          
+          <h3>Typical Permit Timeline</h3>
+          <ul>
+            <li>Pro-ADU towns: 4-6 weeks</li>
+            <li>Standard towns: 6-8 weeks</li>
+            <li>Slower towns: 8-12 weeks</li>
+          </ul>
+          
+          <div class="highlight">
+            <strong>💡 Talking Point:</strong> "The state just removed the biggest barrier. Towns can't say no anymore. The question isn't IF you can build — it's WHEN you want to start."
+          </div>
+        `
+      },
+      'obj-price': {
+        title: '💸 Objection: "Too Expensive"',
+        body: `
+          <div class="objection">
+            <strong>Customer:</strong> "$180K is a lot of money for a small unit."
+          </div>
+          
+          <div class="response">
+            <strong>Response:</strong>
+            <p>"I totally understand — it's a significant investment. Let me share what our customers typically see:</p>
+            <ul>
+              <li>Average rent in Greater Boston: <strong>$2,200-2,800/month</strong></li>
+              <li>Annual rental income: <strong>$26K-34K</strong></li>
+              <li>Payback period: <strong>6-8 years</strong></li>
+              <li>Property value increase: <strong>$80K-150K immediately</strong></li>
+            </ul>
+            <p>So you're not spending $180K — you're investing it. And unlike stocks, you can live in this investment or have family use it."</p>
+          </div>
+          
+          <h3>Comparison Points</h3>
+          <ul>
+            <li>Stick-built addition: $300-500/sqft = $250K+ for same size</li>
+            <li>Garage conversion: Similar cost, less value add</li>
+            <li>Basement conversion: $75-150K, lower rental potential</li>
+          </ul>
+          
+          <button class="copy-btn" onclick="copyText('At $2,500/month rent, a $200K ADU generates $30K/year — that\\'s a 15% annual return while adding $100K+ to your property value.')">Copy ROI Pitch</button>
+        `
+      },
+      'obj-time': {
+        title: '⏰ Objection: "Need to Think About It"',
+        body: `
+          <div class="objection">
+            <strong>Customer:</strong> "This sounds interesting, but I need to think about it / talk to my spouse / not ready yet."
+          </div>
+          
+          <div class="response">
+            <strong>Response (Acknowledge + Probe):</strong>
+            <p>"Absolutely — this is a big decision and you should take your time. Just so I can help you think through it: what's the main thing you'd want to get more clarity on?"</p>
+          </div>
+          
+          <h3>Follow-up Based on Answer:</h3>
+          
+          <p><strong>If financial:</strong> "Would it help if I sent you our ROI calculator? You can plug in your specific numbers."</p>
+          
+          <p><strong>If timing:</strong> "Makes sense. Just so you know, our current lead time is 4-5 months. If you wanted it done by [season], we'd need to start the process by [date]."</p>
+          
+          <p><strong>If spouse:</strong> "Totally understand. Would it be helpful to schedule a quick 15-minute call with both of you? I can answer questions and you can discuss together."</p>
+          
+          <div class="highlight">
+            <strong>💡 Always book a follow-up:</strong> "How about I check back in next week? What day works better — Tuesday or Thursday?"
+          </div>
+        `
+      },
+      'obj-quality': {
+        title: '🏗️ Objection: "Is Modular Quality Good?"',
+        body: `
+          <div class="objection">
+            <strong>Customer:</strong> "I've heard modular homes are lower quality / like mobile homes."
+          </div>
+          
+          <div class="response">
+            <strong>Response:</strong>
+            <p>"Great question — and I'm glad you asked because there's a big misconception here.</p>
+            <p>Modular is actually <strong>higher quality</strong> than stick-built. Here's why:</p>
+            <ul>
+              <li><strong>Built indoors</strong> — No rain damage, no warping, no rushing before weather hits</li>
+              <li><strong>Factory precision</strong> — CNC machines, consistent quality, tighter tolerances</li>
+              <li><strong>Structural strength</strong> — Built to survive transport = overbuilt for site</li>
+              <li><strong>Same code</strong> — Meets identical MA building codes as site-built</li>
+            </ul>
+            <p>Think of it like a car vs a hand-built car. The factory version is actually more precise and reliable."</p>
+          </div>
+          
+          <div class="highlight">
+            <strong>💡 Talking Point:</strong> "Banks, appraisers, and insurance companies treat modular exactly the same as stick-built. It's a real home, just built smarter."
+          </div>
+        `
+      },
+      'obj-permits': {
+        title: '📝 Objection: "What About Permits?"',
+        body: `
+          <div class="objection">
+            <strong>Customer:</strong> "I've heard permits are a nightmare / my town is difficult."
+          </div>
+          
+          <div class="response">
+            <strong>Response:</strong>
+            <p>"You're right that permitting used to be the biggest headache. But two things have changed:</p>
+            <ol>
+              <li><strong>New state law (Feb 2026)</strong> — Massachusetts now REQUIRES all towns to allow ADUs. They can't say no.</li>
+              <li><strong>We handle everything</strong> — Plans, applications, meetings, inspections. You don't have to deal with the building department at all.</li>
+            </ol>
+            <p>We know which towns are fast and which need more hand-holding. That's part of what you're paying for."</p>
+          </div>
+          
+          <h3>Town-Specific Intel</h3>
+          <ul>
+            <li><strong>Fast:</strong> Arlington, Cambridge, Somerville, Newton</li>
+            <li><strong>Moderate:</strong> Most suburbs</li>
+            <li><strong>Slower:</strong> Some western MA towns</li>
+          </ul>
+          
+          <button class="copy-btn" onclick="copyText('The new MA law means towns can\\'t block ADUs anymore. We handle all permits — you won\\'t have to set foot in the building department.')">Copy Permit Pitch</button>
+        `
+      },
+      'obj-neighbors': {
+        title: '👥 Objection: "What Will Neighbors Think?"',
+        body: `
+          <div class="objection">
+            <strong>Customer:</strong> "I'm worried about what my neighbors will say / HOA issues."
+          </div>
+          
+          <div class="response">
+            <strong>Response:</strong>
+            <p>"That's a thoughtful concern. Here's what we've seen:</p>
+            <ul>
+              <li><strong>Design integration</strong> — Our ADUs are designed to complement main homes, not stick out</li>
+              <li><strong>Property values</strong> — Well-designed ADUs actually help neighborhood values</li>
+              <li><strong>Legal right</strong> — Under MA law, neighbors can't block your ADU</li>
+              <li><strong>Common outcomes</strong> — Most neighbors end up curious and interested for themselves!</li>
+            </ul>
+          </div>
+          
+          <h3>HOA Situations</h3>
+          <p>HOAs can have restrictions, but state ADU law often overrides them for MBTA communities. We can review your specific HOA docs.</p>
+          
+          <div class="highlight">
+            <strong>💡 Reframe:</strong> "You're not doing anything wrong — you're using your property rights to create housing. Massachusetts is encouraging this because we have a housing crisis."
+          </div>
+        `
+      },
+      'vs-stickbuilt': {
+        title: '🔨 vs. Stick-Built Construction',
+        body: `
+          <h3>Head-to-Head Comparison</h3>
+          
+          <table style="width:100%; border-collapse: collapse; margin: 0.5rem 0; font-size: 0.9rem;">
+            <tr style="background: var(--navy); color: white;">
+              <th style="padding: 0.5rem; text-align: left;">Factor</th>
+              <th style="padding: 0.5rem;">MassDwell</th>
+              <th style="padding: 0.5rem;">Stick-Built</th>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 0.5rem;"><strong>Timeline</strong></td>
+              <td style="padding: 0.5rem; text-align: center; color: green;">8-12 weeks</td>
+              <td style="padding: 0.5rem; text-align: center; color: red;">6-12 months</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 0.5rem;"><strong>Cost/sqft</strong></td>
+              <td style="padding: 0.5rem; text-align: center; color: green;">$250-300</td>
+              <td style="padding: 0.5rem; text-align: center; color: red;">$350-500</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 0.5rem;"><strong>Weather delays</strong></td>
+              <td style="padding: 0.5rem; text-align: center; color: green;">None</td>
+              <td style="padding: 0.5rem; text-align: center; color: red;">Common</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 0.5rem;"><strong>Quality control</strong></td>
+              <td style="padding: 0.5rem; text-align: center; color: green;">Factory QC</td>
+              <td style="padding: 0.5rem; text-align: center;">Varies by crew</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.5rem;"><strong>Price certainty</strong></td>
+              <td style="padding: 0.5rem; text-align: center; color: green;">Fixed quote</td>
+              <td style="padding: 0.5rem; text-align: center; color: red;">Change orders</td>
+            </tr>
+          </table>
+          
+          <div class="highlight">
+            <strong>💡 Key Line:</strong> "We deliver in 3 months what takes traditional builders 9-12 months — at 30-40% less cost. Same code, same quality, faster and cheaper."
+          </div>
+        `
+      },
+      'vs-modular': {
+        title: '🏭 vs. Other Modular Companies',
+        body: `
+          <h3>National Competitors</h3>
+          
+          <p><strong>Boxabl ($50K units)</strong></p>
+          <ul>
+            <li>❌ Not available in MA yet</li>
+            <li>❌ Very basic finishes</li>
+            <li>❌ No local support/permitting</li>
+            <li>Our angle: "They're vaporware. We deliver."</li>
+          </ul>
+          
+          <p><strong>Villa Homes (CA-based)</strong></p>
+          <ul>
+            <li>❌ West coast focused</li>
+            <li>❌ Limited MA presence</li>
+            <li>Our angle: "We're local. We know MA permitting."</li>
+          </ul>
+          
+          <p><strong>Dvele, Plant Prefab (High-end)</strong></p>
+          <ul>
+            <li>❌ $400K+ price points</li>
+            <li>❌ Luxury positioning</li>
+            <li>Our angle: "We're premium quality at accessible prices."</li>
+          </ul>
+          
+          <div class="highlight">
+            <strong>💡 Differentiation:</strong> "We're the only modular ADU company built specifically for Massachusetts — local factory, local team, local permitting expertise."
+          </div>
+        `
+      },
+      'vs-local': {
+        title: '📍 vs. MA Local Competitors',
+        body: `
+          <h3>Suffolk Construction (ADU Division)</h3>
+          <ul>
+            <li>Traditional stick-built, not modular</li>
+            <li>$200-400K price range</li>
+            <li>6-12 month timeline</li>
+            <li>Our angle: "Great company, but traditional construction. We're 50% faster."</li>
+          </ul>
+          
+          <h3>Backyard ADU / ADU Geeks</h3>
+          <ul>
+            <li>Design/permit services, not builders</li>
+            <li>Rely on subcontractors</li>
+            <li>Less quality control</li>
+            <li>Our angle: "We're vertically integrated — design through move-in."</li>
+          </ul>
+          
+          <h3>Local General Contractors</h3>
+          <ul>
+            <li>Varying quality and reliability</li>
+            <li>ADU not their specialty</li>
+            <li>Our angle: "ADUs are all we do. It's not a side project for us."</li>
+          </ul>
+          
+          <div class="highlight">
+            <strong>💡 Key Differentiator:</strong> "We're the only company in MA with our own factory producing ADUs. Everyone else is either stick-built or shipping from out of state."
+          </div>
+        `
+      },
+      'script-discovery': {
+        title: '🔍 Discovery Call Script',
+        body: `
+          <h3>Opening (30 sec)</h3>
+          <p>"Hi [Name], this is [You] from MassDwell. Thanks for reaching out about ADUs! I've got about 15 minutes — is now still a good time?"</p>
+          
+          <h3>Qualification Questions</h3>
+          <ol>
+            <li><strong>Property:</strong> "Tell me about your property — where is it located and roughly how big is the lot?"</li>
+            <li><strong>Goal:</strong> "What's the main reason you're thinking about an ADU? Rental income, family, home office?"</li>
+            <li><strong>Timeline:</strong> "Is there a timeline you're working toward — any reason to have it done by a certain date?"</li>
+            <li><strong>Research:</strong> "Have you looked at other options — stick-built additions, other modular companies?"</li>
+            <li><strong>Budget:</strong> "Do you have a rough budget range in mind, or are you still figuring that out?"</li>
+          </ol>
+          
+          <h3>Transition to Next Step</h3>
+          <p>"Based on what you've told me, it sounds like [model] might be a good fit. The next step would be a site assessment where we look at your property and give you a firm quote. Takes about 45 minutes. Would [day] at [time] work for you?"</p>
+          
+          <div class="highlight">
+            <strong>💡 Goal:</strong> Book site visit or send lookbook + ROI calculator. Don't oversell — qualify and advance.
+          </div>
+        `
+      },
+      'script-followup': {
+        title: '📲 Follow-up Call Script',
+        body: `
+          <h3>Opening</h3>
+          <p>"Hi [Name], it's [You] from MassDwell. We chatted [timeframe] ago about an ADU for your [location] property. Do you have a quick minute?"</p>
+          
+          <h3>Re-engagement</h3>
+          <p>"I wanted to check in and see where you're at with your thinking. Any questions come up since we talked?"</p>
+          
+          <h3>If They've Gone Cold</h3>
+          <p>"Totally understand — life gets busy. I did want to mention [relevant news/urgency]:</p>
+          <ul>
+            <li>"The new state law just kicked in — permitting is easier than ever."</li>
+            <li>"We're booking [X weeks] out for spring installs."</li>
+            <li>"Material costs are [stable/rising] — locking in now saves."</li>
+          </ul>
+          
+          <h3>Closing</h3>
+          <p>"Would it make sense to do a quick site visit just to see what's possible? No commitment — I just want to give you accurate numbers for your specific property."</p>
+          
+          <div class="highlight">
+            <strong>💡 Key:</strong> Add value, create urgency, always propose a next step.
+          </div>
+        `
+      },
+      'script-close': {
+        title: '🎯 Closing Call Script',
+        body: `
+          <h3>Confirm Understanding</h3>
+          <p>"So to make sure I have this right: you're looking at the [Model] for [use case], with a goal of having it ready by [timeframe]. The all-in investment is [price]. Does that match your understanding?"</p>
+          
+          <h3>Address Final Concerns</h3>
+          <p>"Before we move forward, is there anything else you'd want to know or any concerns I haven't addressed?"</p>
+          
+          <h3>Ask for the Business</h3>
+          <p>"Great. So the next step is a $5,000 deposit to lock in your spot and start the design process. We can do that right now over the phone, or I can send you a link. Which works better?"</p>
+          
+          <h3>If Hesitation</h3>
+          <p>"I understand — it's a big decision. What would help you feel more confident moving forward?"</p>
+          
+          <h3>After Deposit</h3>
+          <p>"Awesome! You'll get a confirmation email within the hour. Our design team will reach out within [X days] to schedule your first design meeting. Welcome to MassDwell!"</p>
+          
+          <div class="highlight">
+            <strong>💡 Remember:</strong> Silence is okay. Ask, then wait. Let them process.
+          </div>
+        `
+      }
+    };
+    
+    // Open modal
+    function openModal(key) {
+      const content = modalContent[key];
+      if (!content) return;
+      
+      document.getElementById('modal-title').textContent = content.title;
+      document.getElementById('modal-body').innerHTML = content.body;
+      document.getElementById('modal-overlay').classList.add('active');
+    }
+    
+    // Close modal
+    function closeModal(event) {
+      if (event && event.target !== event.currentTarget) return;
+      document.getElementById('modal-overlay').classList.remove('active');
+    }
+    
+    // Copy text helper
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied to clipboard!');
+      });
+    }
+    
+    // Close modal on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
