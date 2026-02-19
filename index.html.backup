@@ -441,7 +441,7 @@
     </header>
     
     <div class="search-container">
-      <input type="text" id="search" placeholder="🔍 Search pricing, market data, objections, competitors...">
+      <input type="text" id="search" placeholder="🔍 Search pricing, objections, competitors...">
     </div>
     
     <main id="main-content">
@@ -468,33 +468,6 @@
           <div class="card" onclick="openModal('permits')">
             <div class="card-title">📋 Permits & Regulations</div>
             <div class="card-subtitle">MA ADU law, by-right provisions</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Market Intelligence -->
-      <div class="section" data-section="market-intel">
-        <div class="section-header" onclick="toggleSection(this)">
-          <span class="icon">📊</span>
-          Market Intelligence
-          <span class="toggle">▼</span>
-        </div>
-        <div class="section-content">
-          <div class="card" onclick="openModal('market-size')">
-            <div class="card-title">📈 Market Size & TAM</div>
-            <div class="card-subtitle">$19.65B → $47.34B by 2035 (9.19% CAGR)</div>
-          </div>
-          <div class="card" onclick="openModal('ai-validation')">
-            <div class="card-title">🤖 AI Industry Validation</div>
-            <div class="card-subtitle">2025: "Year AI starts to run" in construction</div>
-          </div>
-          <div class="card" onclick="openModal('growth-drivers')">
-            <div class="card-title">🚀 Growth Drivers</div>
-            <div class="card-subtitle">55% policy-driven, regulatory tailwinds</div>
-          </div>
-          <div class="card" onclick="openModal('competitive-position')">
-            <div class="card-title">🎯 Competitive Position</div>
-            <div class="card-subtitle">AI-first advantage, consulting opportunity</div>
           </div>
         </div>
       </div>
@@ -1196,105 +1169,6 @@
           <div class="highlight">
             <strong>💡 Remember:</strong> Silence is okay. Ask, then wait. Let them process.
           </div>
-        `
-      },
-      'market-size': {
-        title: '📈 Market Size & Total Addressable Market',
-        body: `
-          <h3>ADU Market Size Data</h3>
-          <div style="background: var(--gray-100); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-            <h4>Current Market (2025)</h4>
-            <p><strong>$19.65 Billion</strong> - Current global ADU market value</p>
-          </div>
-          <div style="background: var(--gray-100); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-            <h4>Projected Growth</h4>
-            <p><strong>$47.34 Billion by 2035</strong></p>
-            <p><strong>9.19% CAGR</strong> (Conservative estimate)</p>
-            <p><strong>18.7% CAGR</strong> (Aggressive estimate from other sources)</p>
-          </div>
-          <h4>Key Validation Points</h4>
-          <ul>
-            <li><strong>Multiple Sources:</strong> 3+ independent research firms projecting strong growth</li>
-            <li><strong>Range Consensus:</strong> All sources agree on significant growth (9-18% CAGR)</li>
-            <li><strong>Market Size:</strong> Sufficient TAM to support multiple players and growth strategies</li>
-          </ul>
-          <p style="margin-top: 1rem; color: var(--navy);"><strong>Source:</strong> Global Growth Insights, Insider Market Research, Verified Market Reports</p>
-        `
-      },
-      'ai-validation': {
-        title: '🤖 AI Industry Validation & Technology Positioning',
-        body: `
-          <h3>AI in Construction - Industry Readiness</h3>
-          <div style="background: var(--gold); color: var(--navy); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-            <h4>2025 Industry Prediction</h4>
-            <p><strong>"If 2024 was the year that AI in construction started to walk, then 2025 will be the year it starts to run"</strong></p>
-            <p>- Autodesk Digital Builder, Construction Industry Leaders</p>
-          </div>
-          <h4>Key Market Indicators</h4>
-          <ul>
-            <li><strong>30% Task Automation:</strong> Up to 30% of construction tasks to be automated by 2025</li>
-            <li><strong>Productivity Focus:</strong> AI solving labor shortages and efficiency challenges</li>
-            <li><strong>Workflow Integration:</strong> Administrative tasks like scheduling, cost entry, RFIs</li>
-            <li><strong>Industry Investment:</strong> Major companies (Autodesk, AGC) dedicating resources</li>
-          </ul>
-          <h4>MassDwell Positioning</h4>
-          <ul>
-            <li><strong>First-Mover Advantage:</strong> AI-first operations ahead of industry adoption wave</li>
-            <li><strong>Consulting Opportunity:</strong> Industry seeking AI implementation guidance</li>
-            <li><strong>Technology Validation:</strong> Our approach aligns with predicted industry direction</li>
-          </ul>
-          <p style="margin-top: 1rem; color: var(--navy);"><strong>Sources:</strong> Autodesk Digital Builder, Constructor Magazine, AGC</p>
-        `
-      },
-      'growth-drivers': {
-        title: '🚀 Market Growth Drivers & Policy Tailwinds',
-        body: `
-          <h3>Policy-Driven Market Growth</h3>
-          <div style="background: var(--success); color: white; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-            <h4>Regulatory Support</h4>
-            <p><strong>55% of recent ADU developments</strong> driven by regulatory incentives and land-use liberalization</p>
-          </div>
-          <h4>State-Level Support</h4>
-          <ul>
-            <li><strong>18 States:</strong> Strong/moderate statewide ADU mandates</li>
-            <li><strong>Massachusetts:</strong> Recent legalization creating opportunity wave</li>
-            <li><strong>Maine:</strong> Strongest law nationally (3+ dwelling units per lot required)</li>
-            <li><strong>Arkansas & Iowa:</strong> Recent breakthrough legislation in conservative states</li>
-          </ul>
-          <h4>Market Drivers</h4>
-          <ul>
-            <li><strong>Housing Shortage:</strong> Critical need for affordable housing solutions</li>
-            <li><strong>Rental Income:</strong> Property owners seeking additional revenue streams</li>
-            <li><strong>Aging Population:</strong> Multi-generational housing solutions</li>
-            <li><strong>Investment Capital:</strong> Growing investor interest in ADU market</li>
-          </ul>
-          <p style="margin-top: 1rem; color: var(--navy);"><strong>Sources:</strong> Automaton Growth State Research, Pioneer Institute</p>
-        `
-      },
-      'competitive-position': {
-        title: '🎯 Competitive Position & Revenue Diversification',
-        body: `
-          <h3>MassDwell Competitive Advantages</h3>
-          <h4>Technology Differentiation</h4>
-          <ul>
-            <li><strong>AI-First Operations:</strong> Automated sales, marketing, and customer management</li>
-            <li><strong>Early Adoption:</strong> Positioned ahead of industry AI adoption wave</li>
-            <li><strong>Operational Efficiency:</strong> AI reduces overhead and improves margins</li>
-            <li><strong>Scalable Systems:</strong> Technology infrastructure supports rapid growth</li>
-          </ul>
-          <div style="background: var(--gold); color: var(--navy); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-            <h4>AI Consulting Revenue Opportunity</h4>
-            <p><strong>Additional Revenue Stream:</strong> Construction industry seeking AI implementation guidance</p>
-            <p><strong>Market Validation:</strong> Trade organizations investing in construction AI education</p>
-            <p><strong>Credibility:</strong> MassDwell's operational AI success provides consulting authority</p>
-          </div>
-          <h4>Revenue Diversification Strategy</h4>
-          <ul>
-            <li><strong>Primary:</strong> ADU manufacturing and sales</li>
-            <li><strong>Secondary:</strong> AI consulting for construction/real estate companies</li>
-            <li><strong>Tertiary:</strong> Technology licensing and partnerships</li>
-          </ul>
-          <p style="margin-top: 1rem; color: var(--navy);"><strong>Investment Thesis:</strong> Multi-revenue stream business with technology moat</p>
         `
       }
     };

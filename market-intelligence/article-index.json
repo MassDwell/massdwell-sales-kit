@@ -1,0 +1,76 @@
+{
+  "lastUpdated": "2026-02-19T17:45:00Z",
+  "totalArticles": 5,
+  "categories": {
+    "ai-construction": 3,
+    "adu-news": 0,
+    "industry-trends": 0,
+    "market-validation": 2
+  },
+  "articles": [
+    {
+      "id": "constructor-2024-11-productivity",
+      "title": "Rebuilding Productivity: How AI is reshaping construction from the ground up",
+      "source": "Constructor Magazine",
+      "date": "2024-11-01",
+      "category": "ai-construction",
+      "tags": ["AI-construction", "productivity", "industry-transformation", "market-validation"],
+      "priority": "high",
+      "investorRelevance": "Validates AI-first approach; demonstrates market readiness",
+      "filePath": "data/market-intelligence/ai-construction/2024-11-constructor-rebuilding-productivity.md"
+    },
+    {
+      "id": "constructor-2025-11-ai-guide",
+      "title": "Fall 2025 AI Resource Guide for Construction Professionals",
+      "source": "Constructor Magazine", 
+      "date": "2025-11-01",
+      "category": "ai-construction",
+      "tags": ["AI-construction", "SME-focus", "practical-implementation", "AGC-endorsement"],
+      "priority": "high",
+      "investorRelevance": "Shows demand for AI consulting services; validates revenue opportunity",
+      "filePath": "data/market-intelligence/ai-construction/2025-11-constructor-ai-resource-guide.md"
+    },
+    {
+      "id": "autodesk-2025-10-ai-trends",
+      "title": "Top 2025 AI Construction Trends: According to the Experts",
+      "source": "Autodesk Digital Builder",
+      "date": "2025-10-08", 
+      "category": "ai-construction",
+      "tags": ["AI-trends", "industry-adoption", "productivity", "labor-shortage", "expert-predictions"],
+      "priority": "high",
+      "investorRelevance": "Industry leader validation; 30% task automation potential",
+      "filePath": "data/market-intelligence/ai-construction/2025-10-autodesk-ai-trends-2025.md"
+    },
+    {
+      "id": "global-growth-insights-2025-12-adu-market",
+      "title": "ADU Market Size Trends 2026–2035: $19.65Bn Market Projected to Reach $47.34Bn", 
+      "source": "Global Growth Insights",
+      "date": "2025-12-16",
+      "category": "market-validation",
+      "tags": ["market-size", "TAM", "growth-projections", "investor-data"],
+      "priority": "critical",
+      "investorRelevance": "$19.65B current TAM, 9.19% CAGR to $47.34B by 2035",
+      "filePath": "data/market-intelligence/market-validation/2025-12-adu-market-size-global-growth-insights.md"
+    },
+    {
+      "id": "insider-research-2024-09-adu-24-7bn",
+      "title": "ADU Market Set to Surge to $24.7 Billion by 2031, Growing at 18.6% CAGR",
+      "source": "Insider Market Research", 
+      "date": "2024-09-03",
+      "category": "market-validation", 
+      "tags": ["market-size", "CAGR", "growth-projections", "2031-forecast"],
+      "priority": "high",
+      "investorRelevance": "Alternative market projection: $24.7B by 2031, 18.6% CAGR",
+      "filePath": "data/market-intelligence/market-validation/2024-09-adu-market-24-7bn-by-2031-insider-research.md"
+    }
+  ],
+  "investorBriefingTopics": [
+    "ADU Market TAM: $19.65B current, $47.34B by 2035 (9.19% CAGR)",
+    "Multiple market projections: 9.19% - 18.7% CAGR growth consensus",
+    "AI in construction: 2025 breakthrough year, 30% task automation potential", 
+    "Policy-driven growth: 55% of ADU developments driven by regulatory incentives",
+    "AI consulting opportunity: Industry seeking implementation guidance",
+    "Technology validation: Autodesk and major players investing in construction AI",
+    "Market timing: Early-mover advantage before mainstream AI adoption wave"
+  ]
+}
