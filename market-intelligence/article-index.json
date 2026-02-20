@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-02-19T17:45:00Z",
-  "totalArticles": 5,
+  "lastUpdated": "2026-02-20T13:05:00Z",
+  "totalArticles": 9,
   "categories": {
-    "ai-construction": 3,
-    "adu-news": 0,
-    "industry-trends": 0,
-    "market-validation": 2
+    "ai-construction": 4,
+    "adu-news": 1,
+    "industry-trends": 1,
+    "market-validation": 3
   },
   "articles": [
     {
@@ -62,15 +62,64 @@
       "priority": "high",
       "investorRelevance": "Alternative market projection: $24.7B by 2031, 18.6% CAGR",
       "filePath": "data/market-intelligence/market-validation/2024-09-adu-market-24-7bn-by-2031-insider-research.md"
+    },
+    {
+      "id": "pioneer-2026-02-18-adu-legislation",
+      "title": "Pioneer Report Calls for Legislation to Unlock More ADUs",
+      "source": "Banker & Tradesman",
+      "date": "2026-02-18",
+      "category": "adu-news",
+      "tags": ["massachusetts-adu", "policy", "market-validation", "high-priority"],
+      "priority": "critical",
+      "investorRelevance": "Massachusetts ADUs = 25% of new housing; 1,224 permits approved in 2025; 48% detached units",
+      "filePath": "massdwell-sales-kit/market-intelligence/adu-news/2026-02-18-pioneer-institute-adu-legislation-report.md"
+    },
+    {
+      "id": "fyld-2026-02-17-ai-infrastructure",
+      "title": "AI Field Operations Startup FYLD Raises $41M to Help Build Large-Scale Infrastructure",
+      "source": "SiliconANGLE",
+      "date": "2026-02-17",
+      "category": "ai-construction",
+      "tags": ["ai-construction", "funding", "market-validation", "infrastructure", "critical-priority"],
+      "priority": "high",
+      "investorRelevance": "$41M Series B validates construction AI market; 82% YoY growth, 48% injury reduction",
+      "filePath": "massdwell-sales-kit/market-intelligence/ai-construction/2026-02-17-fyld-41m-series-b-ai-infrastructure.md"
+    },
+    {
+      "id": "coruzant-2026-02-15-industrial-building",
+      "title": "Industrial Building System and Technology for Efficient Development",
+      "source": "Coruzant",
+      "date": "2026-02-15",
+      "category": "industry-trends",
+      "tags": ["modular-construction", "prefab-growth", "automation", "market-trends", "high-priority"],
+      "priority": "high",
+      "investorRelevance": "4.7M housing deficit drives modular adoption; 12%+ annual growth; 50% faster delivery",
+      "filePath": "massdwell-sales-kit/market-intelligence/industry-trends/2026-02-15-industrial-building-system-efficiency.md"
+    },
+    {
+      "id": "investopedia-2026-02-18-rental-surge",
+      "title": "Renters Gain Advantage in Housing Market as Landlords Lose Leverage",
+      "source": "Investopedia",
+      "date": "2026-02-18",
+      "category": "market-validation",
+      "tags": ["housing-supply", "construction-surge", "market-validation", "rental-market"],
+      "priority": "medium",
+      "investorRelevance": "500K+ rental units completed in 2025; 73% affordable housing growth validates demand",
+      "filePath": "massdwell-sales-kit/market-intelligence/market-validation/2026-02-18-rental-market-construction-surge.md"
     }
   ],
   "investorBriefingTopics": [
     "ADU Market TAM: $19.65B current, $47.34B by 2035 (9.19% CAGR)",
     "Multiple market projections: 9.19% - 18.7% CAGR growth consensus",
-    "AI in construction: 2025 breakthrough year, 30% task automation potential", 
-    "Policy-driven growth: 55% of ADU developments driven by regulatory incentives",
-    "AI consulting opportunity: Industry seeking implementation guidance",
-    "Technology validation: Autodesk and major players investing in construction AI",
+    "Massachusetts ADU validation: 25% of new housing, 1,224 permits in 2025, 48% detached",
+    "AI in construction: 2025 breakthrough year, 30% task automation potential",
+    "Construction AI funding: $41M FYLD Series B shows investor confidence, 82% growth",
+    "Housing deficit crisis: 4.7M unit shortage driving industrial building system adoption",
+    "Modular construction surge: 12%+ annual growth, 50% faster delivery than traditional",
+    "Construction supply response: 500K+ rental units completed, 73% affordable housing growth",
+    "Policy-driven growth: Massachusetts legislative push for 900 sq ft ADU baseline",
+    "Technology validation: 60% of new industrial builds using robotic fabrication",
+    "Labor shortage solution: Factory automation bypassing skilled worker shortage",
     "Market timing: Early-mover advantage before mainstream AI adoption wave"
   ]
 }
